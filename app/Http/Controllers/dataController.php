@@ -49,7 +49,12 @@ class dataController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        pasien::create([
+            'id' => $request-> id_pasien,
+            'nama' => $request-> nama_pasien,
+            'alamat' => $request-> alamat_pasien
+        ]);
+        return redirect('data0258');
     }
 
     /**
@@ -71,7 +76,10 @@ class dataController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pasien = pasien::find($id);
+        return view('data_edit0258', [
+            'pasien' => $pasien
+        ]);
     }
 
     /**
@@ -83,7 +91,13 @@ class dataController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pasien = pasien::find($id);
+        $pasien->id = $request->id_pasien;
+        $pasien->nama = $request->nama_pasien;
+        $pasien->alamat = $request->alamat_pasien;
+        $pasien->save();
+
+        return redirect('data0258');
     }
 
     /**
@@ -94,6 +108,9 @@ class dataController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pasien = pasien::find($id);
+        $pasien->delete();
+
+        return redirect('data0258');
     }
 }

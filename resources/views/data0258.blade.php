@@ -38,39 +38,17 @@
                 </thead>
                 <tbody>
                     <?php?>
-                    @foreach (@pasien)
+                    @foreach ($pasien)
                     <tr>
-                        <td>{{@pasien->id}}</td>
-                        <td>{{@pasien->nama}}</td>
-                        <td>{{@pasien->alamat}}</td>
+                        <td>{{$pasien->id}}</td>
+                        <td>{{$pasien->nama}}</td>
+                        <td>{{$pasien->alamat}}</td>
                         <td>
-                            <a href=""> Edit </a>
-                            <a href=""> Hapus </a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-
-        <h1>Dokter</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nama</th>
-                        <th>Jabatan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php?>
-                    @foreach (@pdokter)
-                    <tr>
-                        <td>{{@dokter->id}}</td>
-                        <td>{{@dokter->nama}}</td>
-                        <td>{{@dokter->jabatan}}</td>
-                        <td>
-                            <a href=""> Edit </a>
-                            <a href=""> Hapus </a>
+                            <a href="{{ url('data/' . $pasien->id .  /edit) }}"> Edit </a>
+                            <form action="{{ url('data/' . $pasien->id) }}" method="post"></form>
+                                @csrf
+                                <input type="hidden" name="_method" value="delete">
+                                <button type="submit">Delete</button>
                         </td>
                     </tr>
                     @endforeach
