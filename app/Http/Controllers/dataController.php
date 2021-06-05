@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\dokter;
+use App\Models\pasien;
+use App\Models\kamar;
+use App\Models\user;
 use Illuminate\Http\Request;
 
 class dataController extends Controller
@@ -13,7 +17,18 @@ class dataController extends Controller
      */
     public function index()
     {
-        //
+        $dokter = dokter::all();
+        $kamar = kamar::all();
+        $pasien = pasien::all();
+        $user = user::all();
+
+
+        return view('data0258', [
+            'kamar'  => $kamar,
+            'pasien' => $pasien,
+            'dokter' => $dokter,
+            'user'   => $user
+        ]);
     }
 
     /**
@@ -23,7 +38,7 @@ class dataController extends Controller
      */
     public function create()
     {
-        //
+        return view('data_tambah');
     }
 
     /**
